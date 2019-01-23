@@ -1,0 +1,34 @@
+{
+  "name": "purepass-view",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "easy-e": "^3.1.0",
+    "purepass-core": "^5.0.0",
+    "purepass-validators": "^3.0.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-scripts-ts": "^4.0.8",
+    "semantic-ui-react": "^0.84.0"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject",
+    "deploy": "npm run build && now"
+  },
+  "devDependencies": {
+    "@types/jest": "^23.3.13",
+    "@types/node": "^10.12.18",
+    "@types/react": "^16.7.20",
+    "@types/react-dom": "^16.0.11",
+    "typescript": "^3.2.4"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
