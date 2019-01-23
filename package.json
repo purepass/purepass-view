@@ -14,9 +14,10 @@
   "scripts": {
     "start": "react-scripts-ts start",
     "build": "react-scripts-ts build",
+    "now-build": "npm run build",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
-    "deploy": "npm run build && now"
+    "deploy": "now"
   },
   "devDependencies": {
     "@types/jest": "^23.3.13",

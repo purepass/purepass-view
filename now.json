@@ -1,8 +1,8 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "./build/index.html", "use": "@now/static" }
-    ],
-    "name": "purepass-view",
-    "alias": "purepass.run"
-  }
+  "version": 2,
+  "builds": [
+    { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }
+  ],
+  "name": "purepass-view",
+  "alias": ["purepass.run"]
+}
