@@ -85,10 +85,11 @@ class App extends React.Component<IProps, IState> {
         <div>Secret is required</div>
       )
     }
+    const generatedPassword = purepass.generatePassword(secret, new PurepassOptions(namespace, specialCharacter, maxPasswordLength));
     return (
       <div>
         you're purepass is:
-        <pre>{purepass.generatePassword(secret, new PurepassOptions(namespace, specialCharacter, maxPasswordLength))}</pre>
+        <pre style={{fontSize:9}}>{generatedPassword}</pre>
       </div>
     );
   }
