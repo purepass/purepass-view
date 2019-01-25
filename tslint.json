@@ -1,6 +1,13 @@
 {
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "no-console": {
+      "severity": "warning",
+      "options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+    }
+  },
   "linterOptions": {
+    "no-console": [true],
     "exclude": [
       "config/**/*.js",
       "node_modules/**/*.ts",

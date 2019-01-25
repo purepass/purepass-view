@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@types/lodash.debounce": "^4.0.4",
+    "copy-to-clipboard": "^3.0.8",
     "easy-e": "^3.1.0",
+    "lodash.debounce": "^4.0.8",
     "purepass-core": "^5.0.0",
     "purepass-validators": "^3.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-scripts-ts": "^4.0.8",
+    "react-svg": "^7.2.4",
     "semantic-ui-react": "^0.84.0"
   },
   "scripts": {
