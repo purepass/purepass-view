@@ -41,23 +41,23 @@ const labelStyle: any = {
 }
 
 const appContainerStyle: any = {
+  backgroundColor:'black',
   display:'flex',
   justifyContent:'center',
-  backgroundColor:'black',
   marginTop: '1.5em'
 }
 
 const fixedFooterStyle: any = {
-  color: 'whitesmoke',
-  width: '100%',
-  position:'fixed',
-  left: 0,
   bottom: '1em',
-  textAlign: 'center'
+  color: 'whitesmoke',
+  left: 0,
+  position:'fixed',
+  textAlign: 'center',
+  width: '100%'
 }
 
 class App extends React.Component<IProps, IState> {
-  public formStyle = {display:'flex', flexDirection:'column', justifyContent:'spaceBetween', alignItems:'center'}
+  public formStyle = { alignItems:'center', display:'flex', flexDirection:'column', justifyContent: 'spaceBetween'}
   public namespaceDebounceInterval:number = 400 // may be generous
   constructor(props: IProps) {
     super(props);
