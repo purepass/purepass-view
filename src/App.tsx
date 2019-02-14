@@ -29,6 +29,12 @@ interface IState {
 const defaultCopyIconColor: string = '#A9A9A9'
 const activelyCopying: string = 'rgb(17,138,22)'
 const defaultCopyIconWidth: string = '24px'
+const errorStyle: any = {
+  color:'#f55151',
+  fontSize:'1.25rem',
+  marginTop:'0.25rem'
+}
+
 
 class App extends React.Component<IProps, IState> {
   public formStyle = {display:'flex', flexDirection:'column', justifyContent:'spaceBetween', alignItems:'center'}
@@ -154,7 +160,7 @@ class App extends React.Component<IProps, IState> {
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleSecretChange(value) }} 
               />
-              <div style={{color:'red'}}>{this.state.secretError}</div>
+              <div style={errorStyle}>{this.state.secretError}</div>
             </Form.Field>
             
             <Form.Field>
@@ -162,7 +168,7 @@ class App extends React.Component<IProps, IState> {
               <input placeholder="Un" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleNamespaceChange(value) }}  />
-              <div style={{color:'red'}}>{this.state.namespaceError}</div>
+              <div style={errorStyle}>{this.state.namespaceError}</div>
             </Form.Field>
 
             <Form.Field>
@@ -180,10 +186,11 @@ class App extends React.Component<IProps, IState> {
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleSpecialCharacterChange(value) }}
               />
-              <div style={{color:'red'}}>{this.state.specialCharacterError}</div>
+              <div style={errorStyle}>{this.state.specialCharacterError}</div>
             </Form.Field>
             <div style={{display:'flex', justifyContent:'center'}}>{this.renderPurepass()}</div>
           </Form>
+        <div><p style={{color:'whitesmoke', width:'100%', position:'fixed', left:0, bottom:'1em', textAlign:'center'}}>icon created by Glenn Arseneau !</p></div>
         </div>
       </div>
     );
