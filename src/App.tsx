@@ -7,8 +7,6 @@ import * as React from 'react';
 import ReactSVG from 'react-svg';
 import { Form } from 'semantic-ui-react';
 
-
-
 const purepass = new Purepass();
 
 export interface IProps {
@@ -27,9 +25,17 @@ interface IState {
   specialCharacter: string;
   specialCharacterError: null | any;
 }
+
 const defaultCopyIconColor: string = '#A9A9A9'
 const activelyCopying: string = 'rgb(17,138,22)'
 const defaultCopyIconWidth: string = '24px'
+const errorStyle: any = {
+  color:'#f55151',
+  fontSize:'1.25rem',
+  marginTop:'0.25rem'
+}
+
+
 class App extends React.Component<IProps, IState> {
   public formStyle = {display:'flex', flexDirection:'column', justifyContent:'spaceBetween', alignItems:'center'}
   public namespaceDebounceInterval:number = 400 // may be generous
@@ -49,7 +55,6 @@ class App extends React.Component<IProps, IState> {
     };
   }
   
-
   public handleSecretChange = (val: string) => {
     const error = validate.secret(val);
     if(error) {
@@ -119,7 +124,7 @@ class App extends React.Component<IProps, IState> {
       setInterval(()=>{this.setState({copyIconColor:defaultCopyIconColor, copyIconWidth: defaultCopyIconWidth})},300)
     });
   }
-
+//
   public renderPurepass = () => {
     const { secret, namespace, specialCharacter, maxPasswordLength, copyIconColor, copyIconWidth } = this.state;
     if(!secret || !secret.length){
@@ -140,32 +145,34 @@ class App extends React.Component<IProps, IState> {
       </div>
     );
   }
-
   public render() {
     return (
-      <div style={{display:'flex', justifyContent:'center'}}>
+      <div style={{display:'flex', justifyContent:'center', backgroundColor:'black', marginTop: '1.5em'}}>
         <div>
-        <h1>Purepass</h1>
+          <img
+            style={{maxWidth:'180px'}}
+            src="/purepass.png"
+          />
           <Form style={this.formStyle}>
             <Form.Field>
-              <label>secret</label>
+              <label style={{ color: 'white' }}>secret</label>
               <input placeholder="password1234" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleSecretChange(value) }} 
               />
-              <div style={{color:'red'}}>{this.state.secretError}</div>
+              <div style={errorStyle}>{this.state.secretError}</div>
             </Form.Field>
             
             <Form.Field>
-              <label>namespace</label>
+              <label style={{ color: 'white' }}>namespace</label>
               <input placeholder="Un" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleNamespaceChange(value) }}  />
-              <div style={{color:'red'}}>{this.state.namespaceError}</div>
+              <div style={errorStyle}>{this.state.namespaceError}</div>
             </Form.Field>
 
             <Form.Field>
-              <label>max character count</label>
+              <label style={{ color: 'white' }}>max character count</label>
               <input placeholder="64" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleMaxPasswordLengthChange(value) }}
@@ -174,15 +181,16 @@ class App extends React.Component<IProps, IState> {
             </Form.Field>
 
             <Form.Field>
-              <label>special character</label>
+              <label style={{ color: 'white' }}>special character</label>
               <input placeholder="#" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleSpecialCharacterChange(value) }}
               />
-              <div style={{color:'red'}}>{this.state.specialCharacterError}</div>
+              <div style={errorStyle}>{this.state.specialCharacterError}</div>
             </Form.Field>
             <div style={{display:'flex', justifyContent:'center'}}>{this.renderPurepass()}</div>
           </Form>
+        <div><p style={{color:'whitesmoke', width:'100%', position:'fixed', left:0, bottom:'1em', textAlign:'center'}}>icon created by Glenn Arseneau !</p></div>
         </div>
       </div>
     );
