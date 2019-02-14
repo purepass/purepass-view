@@ -29,12 +29,32 @@ interface IState {
 const defaultCopyIconColor: string = '#A9A9A9'
 const activelyCopying: string = 'rgb(17,138,22)'
 const defaultCopyIconWidth: string = '24px'
+
 const errorStyle: any = {
   color:'#f55151',
   fontSize:'1.25rem',
   marginTop:'0.25rem'
 }
 
+const labelStyle: any = {
+  color: 'white'
+}
+
+const appContainerStyle: any = {
+  display:'flex',
+  justifyContent:'center',
+  backgroundColor:'black',
+  marginTop: '1.5em'
+}
+
+const fixedFooterStyle: any = {
+  color: 'whitesmoke',
+  width: '100%',
+  position:'fixed',
+  left: 0,
+  bottom: '1em',
+  textAlign: 'center'
+}
 
 class App extends React.Component<IProps, IState> {
   public formStyle = {display:'flex', flexDirection:'column', justifyContent:'spaceBetween', alignItems:'center'}
@@ -147,7 +167,7 @@ class App extends React.Component<IProps, IState> {
   }
   public render() {
     return (
-      <div style={{display:'flex', justifyContent:'center', backgroundColor:'black', marginTop: '1.5em'}}>
+      <div style={appContainerStyle}>
         <div>
           <img
             style={{maxWidth:'180px'}}
@@ -155,7 +175,7 @@ class App extends React.Component<IProps, IState> {
           />
           <Form style={this.formStyle}>
             <Form.Field>
-              <label style={{ color: 'white' }}>secret</label>
+              <label style={labelStyle}>secret</label>
               <input placeholder="password1234" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleSecretChange(value) }} 
@@ -164,7 +184,7 @@ class App extends React.Component<IProps, IState> {
             </Form.Field>
             
             <Form.Field>
-              <label style={{ color: 'white' }}>namespace</label>
+              <label style={labelStyle}>namespace</label>
               <input placeholder="Un" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleNamespaceChange(value) }}  />
@@ -172,7 +192,7 @@ class App extends React.Component<IProps, IState> {
             </Form.Field>
 
             <Form.Field>
-              <label style={{ color: 'white' }}>max character count</label>
+              <label style={labelStyle}>max character count</label>
               <input placeholder="64" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleMaxPasswordLengthChange(value) }}
@@ -181,7 +201,7 @@ class App extends React.Component<IProps, IState> {
             </Form.Field>
 
             <Form.Field>
-              <label style={{ color: 'white' }}>special character</label>
+              <label style={labelStyle}>special character</label>
               <input placeholder="#" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleSpecialCharacterChange(value) }}
@@ -190,7 +210,7 @@ class App extends React.Component<IProps, IState> {
             </Form.Field>
             <div style={{display:'flex', justifyContent:'center'}}>{this.renderPurepass()}</div>
           </Form>
-        <div><p style={{color:'whitesmoke', width:'100%', position:'fixed', left:0, bottom:'1em', textAlign:'center'}}>icon created by Glenn Arseneau !</p></div>
+        <div><p style={fixedFooterStyle}>icon created by Glenn Arseneau !</p></div>
         </div>
       </div>
     );
