@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 ReactDOM.render(
-  <App themeColour="#4a148c"/>,
+  <App themeColour="#000"/>,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();

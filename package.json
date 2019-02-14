@@ -2,6 +2,7 @@
   "name": "purepass-view",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://purepass.run",
   "dependencies": {
     "@types/lodash.debounce": "^4.0.4",
     "copy-to-clipboard": "^3.0.8",
@@ -9,10 +10,10 @@
     "lodash.debounce": "^4.0.8",
     "purepass-core": "^5.0.0",
     "purepass-validators": "^3.0.0",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
     "react-scripts-ts": "^4.0.8",
-    "react-svg": "^7.2.4",
+    "react-svg": "^7.2.6",
     "semantic-ui-react": "^0.84.0"
   },
   "scripts": {
@@ -24,11 +25,11 @@
     "deploy": "now"
   },
   "devDependencies": {
-    "@types/jest": "^23.3.13",
-    "@types/node": "^10.12.18",
-    "@types/react": "^16.7.20",
-    "@types/react-dom": "^16.0.11",
-    "typescript": "^3.2.4"
+    "@types/jest": "^23.3.14",
+    "@types/node": "^10.12.24",
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "^16.8.0",
+    "typescript": "^3.3.3"
   },
   "browserslist": [
     ">0.2%",
