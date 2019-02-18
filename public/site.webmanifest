@@ -1,6 +1,6 @@
 {
-    "name": "PurePass",
-    "short_name": "PurePass",
+    "name": "purepass",
+    "short_name": "purepass",
     "icons": [
         {
             "src": "/android-chrome-192x192.png?v=dLJvxPey4b",
