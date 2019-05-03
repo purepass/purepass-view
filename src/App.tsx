@@ -14,8 +14,8 @@ export interface IProps {
 }
 
 interface IState {
-  copyIconColor:string;
-  copyIconWidth:string;
+  copyIconColor: string;
+  copyIconWidth: string;
   maxPasswordLength: number;
   maxPasswordLengthError: null | any;
   namespace: string;
@@ -31,9 +31,9 @@ const activelyCopying: string = 'rgb(17,138,22)'
 const defaultCopyIconWidth: string = '24px'
 
 const errorStyle: any = {
-  color:'#f55151',
-  fontSize:'1.25rem',
-  marginTop:'0.25rem'
+  color: '#f55151',
+  fontSize: '1.25rem',
+  marginTop: '0.25rem'
 }
 
 const labelStyle: any = {
@@ -41,9 +41,9 @@ const labelStyle: any = {
 }
 
 const appContainerStyle: any = {
-  backgroundColor:'black',
-  display:'flex',
-  justifyContent:'center',
+  backgroundColor: 'black',
+  display: 'flex',
+  justifyContent: 'center',
   marginTop: '1.5em'
 }
 
@@ -51,21 +51,21 @@ const fixedFooterStyle: any = {
   bottom: '1em',
   color: 'whitesmoke',
   left: 0,
-  position:'fixed',
+  position: 'fixed',
   textAlign: 'center',
   width: '100%'
 }
 
 class App extends React.Component<IProps, IState> {
-  public formStyle = { alignItems:'center', display:'flex', flexDirection:'column', justifyContent: 'spaceBetween'}
-  public namespaceDebounceInterval:number = 400 // may be generous
+  public formStyle = { alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'spaceBetween' }
+  public namespaceDebounceInterval: number = 400 // may be generous
   constructor(props: IProps) {
     super(props);
     this.state = {
       copyIconColor: defaultCopyIconColor,
       copyIconWidth: defaultCopyIconWidth,
       maxPasswordLength: 64,
-      maxPasswordLengthError:null,
+      maxPasswordLengthError: null,
       namespace: 'Un',
       namespaceError: null,
       secret: '',
@@ -74,10 +74,10 @@ class App extends React.Component<IProps, IState> {
       specialCharacterError: null
     };
   }
-  
+
   public handleSecretChange = (val: string) => {
     const error = validate.secret(val);
-    if(error) {
+    if (error) {
       this.setState({ secret: '', secretError: error.messageForHumans });
       return;
     }
@@ -88,66 +88,66 @@ class App extends React.Component<IProps, IState> {
     const debounceUpdate = debounce((value) => {
       const error = validate.namespace(value)
       const namespaceNull = (!value || !value.length)
-      if(!namespaceNull && error) {
+      if (!namespaceNull && error) {
         // next line assumes namespace is defined
-        if(error.code === 'purepass/validators/validate.namespace/(namespace.length!==2)') {
+        if (error.code === 'purepass/validators/validate.namespace/(namespace.length!==2)') {
           error.setMessageForHumans('namespace must be left blank or 2 characters in length')
         }
         this.setState({ namespaceError: error.messageForHumans });
         return
       }
       this.setState({ namespace: val, namespaceError: null })
-  }, this.namespaceDebounceInterval)
-  debounceUpdate(val);
-}
+    }, this.namespaceDebounceInterval)
+    debounceUpdate(val);
+  }
 
   public handleMaxPasswordLengthChange = (valStr: string) => {
 
     const debounceUpdate = debounce((val) => {
-      if(val === ''){
+      if (val === '') {
         this.setState({ maxPasswordLength: 64, maxPasswordLengthError: null });
         return
       }
       const value = parseInt(valStr, 10)
       const error = validate.maxPasswordLength(value);
-      if(error) {
-        if(error.code === 'purepass/valudateArgs/(maxPasswordLength<=13)') {
+      if (error) {
+        if (error.code === 'purepass/valudateArgs/(maxPasswordLength<=13)') {
           error.setMessageForHumans('max password length should be at least 13 characters')
         }
         this.setState({ maxPasswordLengthError: error.messageForHumans });
         return
       }
 
-      if(Number.isNaN(value)) {
-        const typeError = new Erric('purepass-view/handleMaxPasswordLengthChange/input===NaN','max password length must be an integer',{input: valStr})
+      if (Number.isNaN(value)) {
+        const typeError = new Erric('purepass-view/handleMaxPasswordLengthChange/input===NaN', 'max password length must be an integer', { input: valStr })
         this.setState({ maxPasswordLengthError: typeError.messageForHumans });
         return;
       }
       this.setState({ maxPasswordLength: value, maxPasswordLengthError: null });
-  }, this.namespaceDebounceInterval)
+    }, this.namespaceDebounceInterval)
     debounceUpdate(valStr);
   }
 
   public handleSpecialCharacterChange = (val: string) => {
     const error = validate.specialCharacter(val);
-    if(error) {
+    if (error) {
       this.setState({ specialCharacterError: error.messageForHumans });
       return;
     }
     this.setState({ specialCharacter: val, specialCharacterError: null });
   }
-  
+
   public copyToClipboardWithFeedback = (generatedPassword: string) => {
     copy(generatedPassword);
 
-    this.setState({copyIconColor: activelyCopying, copyIconWidth:'30px'},() => {
-      setInterval(()=>{this.setState({copyIconColor:defaultCopyIconColor, copyIconWidth: defaultCopyIconWidth})},300)
+    this.setState({ copyIconColor: activelyCopying, copyIconWidth: '30px' }, () => {
+      setInterval(() => { this.setState({ copyIconColor: defaultCopyIconColor, copyIconWidth: defaultCopyIconWidth }) }, 300)
     });
   }
-//
+  //
   public renderPurepass = () => {
     const { secret, namespace, specialCharacter, maxPasswordLength, copyIconColor, copyIconWidth } = this.state;
-    if(!secret || !secret.length){
+    if (!secret || !secret.length) {
       return (
         <div>Secret is required</div>
       )
@@ -156,11 +156,11 @@ class App extends React.Component<IProps, IState> {
 
     // tslint:disable-next-line:jsx-no-lambda
     return (
-      <div onClick={this.copyToClipboardWithFeedback.bind(this, generatedPassword, {debug: true})}>
-        you're purepass is:
-        <pre style={{fontSize:9}}>{generatedPassword}</pre>
-        <div style={{display:'flex', justifyContent:'center', alignItems:'center'}}>
-        <ReactSVG src="/fa-copy-reg.svg" svgStyle={{ width: copyIconWidth, color: copyIconColor }}/>
+      <div onClick={this.copyToClipboardWithFeedback.bind(this, generatedPassword, { debug: true })}>
+        your purepass is:
+        <pre style={{ fontSize: 9 }}>{generatedPassword}</pre>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <ReactSVG src="/fa-copy-reg.svg" svgStyle={{ width: copyIconWidth, color: copyIconColor }} />
         </div>
       </div>
     );
@@ -170,7 +170,7 @@ class App extends React.Component<IProps, IState> {
       <div style={appContainerStyle}>
         <div>
           <img
-            style={{maxWidth:'180px'}}
+            style={{ maxWidth: '180px' }}
             src="/purepass.png"
           />
           <Form style={this.formStyle}>
@@ -178,16 +178,16 @@ class App extends React.Component<IProps, IState> {
               <label style={labelStyle}>secret</label>
               <input placeholder="password1234" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
-                ({ target: { value } }) => { this.handleSecretChange(value) }} 
+                ({ target: { value } }) => { this.handleSecretChange(value) }}
               />
               <div style={errorStyle}>{this.state.secretError}</div>
             </Form.Field>
-            
+
             <Form.Field>
               <label style={labelStyle}>namespace</label>
               <input placeholder="Un" onChange={
                 // tslint:disable-next-line:jsx-no-lambda
-                ({ target: { value } }) => { this.handleNamespaceChange(value) }}  />
+                ({ target: { value } }) => { this.handleNamespaceChange(value) }} />
               <div style={errorStyle}>{this.state.namespaceError}</div>
             </Form.Field>
 
@@ -197,7 +197,7 @@ class App extends React.Component<IProps, IState> {
                 // tslint:disable-next-line:jsx-no-lambda
                 ({ target: { value } }) => { this.handleMaxPasswordLengthChange(value) }}
               />
-              <div style={{color:'red'}}>{this.state.maxPasswordLengthError}</div>
+              <div style={{ color: 'red' }}>{this.state.maxPasswordLengthError}</div>
             </Form.Field>
 
             <Form.Field>
@@ -208,9 +208,9 @@ class App extends React.Component<IProps, IState> {
               />
               <div style={errorStyle}>{this.state.specialCharacterError}</div>
             </Form.Field>
-            <div style={{display:'flex', justifyContent:'center', color:'white'}}>{this.renderPurepass()}</div>
+            <div style={{ display: 'flex', justifyContent: 'center', color: 'white' }}>{this.renderPurepass()}</div>
           </Form>
-        <div><p style={fixedFooterStyle}>icon created by Glenn Arseneau !</p></div>
+          <div><p style={fixedFooterStyle}>icon created by Glenn Arseneau !</p></div>
         </div>
       </div>
     );
