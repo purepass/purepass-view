@@ -47,15 +47,6 @@ const appContainerStyle: any = {
   marginTop: '1.5em'
 }
 
-const fixedFooterStyle: any = {
-  bottom: '1em',
-  color: 'whitesmoke',
-  left: 0,
-  position: 'fixed',
-  textAlign: 'center',
-  width: '100%'
-}
-
 class App extends React.Component<IProps, IState> {
   public formStyle = { alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'spaceBetween' }
   public namespaceDebounceInterval: number = 400 // may be generous
