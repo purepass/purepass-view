@@ -210,7 +210,6 @@ class App extends React.Component<IProps, IState> {
             </Form.Field>
             <div style={{ display: 'flex', justifyContent: 'center', color: 'white' }}>{this.renderPurepass()}</div>
           </Form>
-          <div><p style={fixedFooterStyle}>icon created by Glenn Arseneau !</p></div>
         </div>
       </div>
     );
